@@ -208,6 +208,7 @@ var toGeoJSON = (function() {
             }
             function getPlacemark(root) {
                 var geomsAndTimes = getGeometry(root), i, properties = {},
+                    folderName = nodeVal(get1(root.parentNode, 'name')),
                     name = nodeVal(get1(root, 'name')),
                     address = nodeVal(get1(root, 'address')),
                     styleUrl = nodeVal(get1(root, 'styleUrl')),
@@ -220,6 +221,7 @@ var toGeoJSON = (function() {
                     visibility = get1(root, 'visibility');
 
                 if (!geomsAndTimes.geoms.length) return [];
+                if(folderName) properties.folderName = folderName;
                 if (name) properties.name = name;
                 if (address) properties.address = address;
                 if (styleUrl) {
